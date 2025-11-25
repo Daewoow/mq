@@ -82,7 +82,7 @@ namespace Producer.Tests
                 .FirstOrDefault(c => c.Context.Message.Id == testMessage.Id);
 
             Assert.That(consumed, Is.Not.Null);
-            Assert.That(consumed!.Context.Message.Message, Is.EqualTo("Прямой Send в NUnit"));
+            Assert.That(consumed!.Context.Message.Message, Is.EqualTo("Прямой Send"));
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace Producer.Tests
         {
             var consumerTestHarness = _harness.GetConsumerHarness<MyConsumer>();
 
-            Assert.That(await consumerTestHarness.Consumed.Any<IModel>(), Is.False.After(5000, 100)); 
+            Assert.That(await consumerTestHarness.Consumed.Any<Model>(), Is.False.After(5000, 100)); 
             
             var id = Guid.NewGuid();
 
